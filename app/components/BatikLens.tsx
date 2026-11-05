@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Search, Compass } from "lucide-react";
 
 /* ─────────────────────────────────────────────
    Batik Lens — Interactive Motif Scanner
@@ -330,9 +331,11 @@ export default function BatikLens() {
             </AnimatePresence>
 
             {!activeHotspot && (
-              <div className="glass border border-dashed border-border rounded-2xl p-5 text-center text-sm text-muted">
-                <div className="text-2xl mb-2">🔍</div>
-                Klik titik berwarna pada kain atau pilih dari daftar di atas untuk membaca filosofinya.
+              <div className="glass border border-dashed border-border rounded-2xl p-6 text-center text-sm text-muted">
+                <div className="w-10 h-10 rounded-full bg-gold/10 text-gold flex items-center justify-center mx-auto mb-3">
+                  <Search className="w-5 h-5" />
+                </div>
+                Arahkan kursor atau sentuh titik interaktif pada kain untuk mempelajari filosofi tiap lekukan motif.
               </div>
             )}
           </div>

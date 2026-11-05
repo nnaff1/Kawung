@@ -25,8 +25,9 @@ export default function Footer() {
               menghubungkan warisan leluhur dengan generasi masa kini.
             </p>
             {/* UNESCO badge */}
-            <div className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gold/30 bg-gold/8 text-xs text-gold">
-              🌍 UNESCO Intangible Heritage 2009
+            <div className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gold/30 bg-gold/10 text-xs font-medium text-gold">
+              <span className="w-1.5 h-1.5 rounded-full bg-gold" />
+              <span>UNESCO Intangible Cultural Heritage 2009</span>
             </div>
           </div>
 
@@ -61,18 +62,19 @@ export default function Footer() {
               Lestarikan Batik
             </h4>
             <p className="text-sm text-muted leading-relaxed mb-4">
-              Batik bukan sekadar kain — ia adalah identitas bangsa. 
-              Setiap kali kita memakai batik, kita merayakan warisan yang tak ternilai.
+              Batik bukan sekadar kain — ia adalah identitas dan marwah bangsa. 
+              Setiap helai yang kita kenakan adalah wujud penghormatan terhadap karya para empu terdahulu.
             </p>
-            <div className="space-y-2">
+            <div className="space-y-2.5 text-xs text-muted">
               {[
-                "👘 Gunakan batik di keseharian",
-                "🎓 Pelajari sejarah dan filosofinya",
-                "🛍️ Beli batik dari pengrajin lokal",
-                "📢 Ceritakan kepada generasi muda",
+                "Kenakan wastra batik dalam dinamika keseharian",
+                "Dalami filosofi di balik setiap gurat canting",
+                "Dukung perajin lokal dan ekosistem batik tulis",
+                "Warisi narasi luhur ini kepada generasi mendatang",
               ].map((tip) => (
-                <div key={tip} className="text-sm text-muted flex items-start gap-2">
-                  <span>{tip}</span>
+                <div key={tip} className="flex items-start gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold mt-1.5 shrink-0" />
+                  <span className="text-foreground/80 leading-relaxed">{tip}</span>
                 </div>
               ))}
             </div>
@@ -92,18 +94,16 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted">
           <div>
             © {currentYear} <span className="text-gold font-semibold">Kawung</span> — 
-            Proyek Web Budaya Indonesia
+            Karya Kurasi Budaya Nusantara
           </div>
           <div className="text-center">
-            Dibuat dengan{" "}
-            <span className="text-gold">❤</span>{" "}
-            untuk melestarikan warisan Batik Nusantara
+            Dipersembahkan untuk pelestarian warisan Batik Nusantara
           </div>
           <div className="flex items-center gap-2">
             <span>Teknologi:</span>
-            <span className="px-2 py-0.5 rounded-full bg-border/50 text-foreground/60">Next.js 16</span>
-            <span className="px-2 py-0.5 rounded-full bg-border/50 text-foreground/60">Tailwind v4</span>
-            <span className="px-2 py-0.5 rounded-full bg-border/50 text-foreground/60">Framer Motion</span>
+            <span className="px-2 py-0.5 rounded-full bg-border/40 text-foreground/70">Next.js 16</span>
+            <span className="px-2 py-0.5 rounded-full bg-border/40 text-foreground/70">Tailwind v4</span>
+            <span className="px-2 py-0.5 rounded-full bg-border/40 text-foreground/70">Framer Motion</span>
           </div>
         </div>
       </div>

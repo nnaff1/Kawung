@@ -8,18 +8,18 @@
   --gold:        #C9A84C;
   --gold-light:  #E8C97A;
   --copper:      #B87333;
-  --cream:       #FDF6E3;
-  --deep-brown:  #2C1810;
+  --cream:       #FAF7F0;
+  --deep-brown:  #221611;
   --warm-black:  #0F0A06;
   --parchment:   #F5EDD5;
 
-  /* Semantic */
+  /* Semantic - Light mode (Default) */
   --background:  var(--cream);
   --foreground:  var(--deep-brown);
   --surface:     #FFFFFF;
-  --muted:       #7A6A5A;
+  --muted:       #6C5B4F;
   --accent:      var(--gold);
-  --border:      rgba(201,168,76,0.2);
+  --border:      rgba(184, 115, 51, 0.22);
 
   /* Typography */
   --font-display: var(--font-playfair), Georgia, serif;
@@ -27,16 +27,16 @@
 
   /* Shadows */
   --shadow-gold: 0 4px 24px rgba(201,168,76,0.18);
-  --shadow-card: 0 2px 16px rgba(44,24,16,0.08);
+  --shadow-card: 0 4px 20px rgba(44,24,16,0.06);
 }
 
 [data-theme="dark"] {
   --background:  var(--warm-black);
   --foreground:  var(--parchment);
   --surface:     #1A110A;
-  --muted:       #9A8A7A;
-  --border:      rgba(201,168,76,0.15);
-  --shadow-card: 0 2px 20px rgba(0,0,0,0.5);
+  --muted:       #A39282;
+  --border:      rgba(201,168,76,0.18);
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.55);
 }
 
 @theme inline {
@@ -117,14 +117,14 @@ body {
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border);
 }
 
 [data-theme="dark"] .glass {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(26, 17, 10, 0.72);
 }
 
 .gold-border {

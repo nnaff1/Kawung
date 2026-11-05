@@ -7,15 +7,14 @@ export default function ThemeProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const initialized = useRef(false);
 
   useEffect(() => {
     if (initialized.current) return;
     initialized.current = true;
     const stored = localStorage.getItem("batik-theme") as "light" | "dark" | null;
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initial = stored ?? (prefersDark ? "dark" : "light");
+    const initial = stored ?? "light";
     setTheme(initial);
     document.documentElement.setAttribute("data-theme", initial);
   }, []);
@@ -42,7 +41,7 @@ interface ThemeContextValue {
 }
 
 export const ThemeContext = createContext<ThemeContextValue>({
-  theme: "dark",
+  theme: "light",
   toggle: () => {},
 });
 

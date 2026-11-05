@@ -41,11 +41,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               (function(){
                 try {
                   var stored = localStorage.getItem('batik-theme');
-                  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  var theme = stored || (prefersDark ? 'dark' : 'light');
+                  var theme = stored || 'light';
                   document.documentElement.setAttribute('data-theme', theme);
                 } catch(e) {
-                  document.documentElement.setAttribute('data-theme', 'dark');
+                  document.documentElement.setAttribute('data-theme', 'light');
                 }
               })();
             `,

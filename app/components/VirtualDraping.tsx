@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
+import { RotateCw, Sparkles, Check } from "lucide-react";
 
 /* ─────────────────────────────────────────────
    Virtual Draping Preview
@@ -18,11 +19,11 @@ interface DrapeConfig {
   style: "formal" | "casual" | "modern";
 }
 
-const GARMENTS: { id: GarmentType; label: string; icon: string }[] = [
-  { id: "kemeja", label: "Kemeja", icon: "👔" },
-  { id: "outer", label: "Outerwear", icon: "🧥" },
-  { id: "blazer", label: "Blazer", icon: "🤵" },
-  { id: "dress", label: "Dress", icon: "👗" },
+const GARMENTS: { id: GarmentType; label: string; code: string }[] = [
+  { id: "kemeja", label: "Kemeja", code: "KM" },
+  { id: "outer", label: "Outerwear", code: "OW" },
+  { id: "blazer", label: "Blazer", code: "BZ" },
+  { id: "dress", label: "Gaun", code: "DR" },
 ];
 
 const MOTIF_CHOICES: { id: MotifId; label: string; color: string; bg: string }[] = [
@@ -104,19 +105,19 @@ export default function VirtualDraping() {
               <div className="absolute top-4 right-4 flex flex-col gap-2">
                 <button
                   onClick={handleRotate}
-                  className="w-10 h-10 rounded-full glass border border-gold/30 flex items-center justify-center hover:border-gold transition-all text-gold text-sm"
-                  title="Putar"
+                  className="w-10 h-10 rounded-full glass border border-gold/30 flex items-center justify-center hover:border-gold transition-all text-gold text-sm shadow-sm"
+                  title="Putar Sudut Pandang"
                 >
-                  ↻
+                  <RotateCw className="w-4 h-4" />
                 </button>
-                <div className="w-10 h-10 rounded-full glass border border-border flex items-center justify-center text-xs text-muted">
-                  {view === "front" ? "F" : "B"}
+                <div className="w-10 h-10 rounded-full glass border border-border flex items-center justify-center text-xs font-semibold text-muted">
+                  {view === "front" ? "Depan" : "Belakang"}
                 </div>
               </div>
 
               {/* Label */}
               <div className="text-center mt-4">
-                <div className="text-xs text-muted">
+                <div className="text-xs text-muted font-medium">
                   {GARMENTS.find((g) => g.id === config.garment)?.label} ·{" "}
                   {MOTIF_CHOICES.find((m) => m.id === config.motif)?.label} ·{" "}
                   {view === "front" ? "Tampak Depan" : "Tampak Belakang"}
@@ -131,13 +132,13 @@ export default function VirtualDraping() {
                   key={s}
                   onClick={() => update({ style: s })}
                   className={[
-                    "py-2.5 rounded-xl border text-xs font-medium transition-all duration-200 capitalize",
+                    "py-2.5 rounded-xl border text-xs font-medium transition-all duration-200 capitalize text-center",
                     config.style === s
-                      ? "border-gold bg-gold/15 text-gold"
-                      : "border-border text-muted hover:border-gold/30",
+                      ? "border-gold bg-gold/15 text-gold font-semibold shadow-xs"
+                      : "border-border text-muted hover:border-gold/30 bg-surface",
                   ].join(" ")}
                 >
-                  {s === "formal" ? "🏛️ Formal" : s === "casual" ? "☕ Kasual" : "✨ Modern"}
+                  {s === "formal" ? "Gaya Formal" : s === "casual" ? "Gaya Kasual" : "Kontemporer"}
                 </button>
               ))}
             </div>
@@ -147,21 +148,23 @@ export default function VirtualDraping() {
           <div className="space-y-5">
             {/* Garment selector */}
             <div className="glass border border-border rounded-2xl p-4">
-              <h4 className="text-xs font-semibold text-gold uppercase tracking-wider mb-3">Jenis Pakaian</h4>
+              <h4 className="text-xs font-semibold text-gold uppercase tracking-wider mb-3">Siluet Busana</h4>
               <div className="grid grid-cols-2 gap-2">
                 {GARMENTS.map((g) => (
                   <button
                     key={g.id}
                     onClick={() => update({ garment: g.id })}
                     className={[
-                      "py-3 rounded-xl border text-xs font-medium transition-all duration-200 flex flex-col items-center gap-1",
+                      "py-3 rounded-xl border text-xs font-medium transition-all duration-200 flex flex-col items-center gap-1.5",
                       config.garment === g.id
-                        ? "border-gold bg-gold/15 text-gold"
-                        : "border-border text-muted hover:border-gold/30 hover:text-foreground",
+                        ? "border-gold bg-gold/15 text-gold font-semibold shadow-xs"
+                        : "border-border text-muted hover:border-gold/30 hover:text-foreground bg-surface",
                     ].join(" ")}
                   >
-                    <span className="text-xl">{g.icon}</span>
-                    {g.label}
+                    <span className="w-7 h-7 rounded-lg bg-gold/10 text-gold flex items-center justify-center font-mono text-xs font-bold">
+                      {g.code}
+                    </span>
+                    <span>{g.label}</span>
                   </button>
                 ))}
               </div>
@@ -169,7 +172,7 @@ export default function VirtualDraping() {
 
             {/* Motif selector */}
             <div className="glass border border-border rounded-2xl p-4">
-              <h4 className="text-xs font-semibold text-gold uppercase tracking-wider mb-3">Motif Batik</h4>
+              <h4 className="text-xs font-semibold text-gold uppercase tracking-wider mb-3">Aplikasi Motif</h4>
               <div className="space-y-2">
                 {MOTIF_CHOICES.map((m) => (
                   <button
@@ -178,20 +181,20 @@ export default function VirtualDraping() {
                     className={[
                       "w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-all duration-200",
                       config.motif === m.id
-                        ? "border-current bg-current/10"
-                        : "border-border hover:border-current/30",
+                        ? "border-current bg-current/10 font-semibold"
+                        : "border-border hover:border-current/30 bg-surface",
                     ].join(" ")}
                     style={{ color: m.color }}
                   >
                     <div
-                      className="w-8 h-8 rounded-lg flex-shrink-0 overflow-hidden"
+                      className="w-8 h-8 rounded-lg flex-shrink-0 overflow-hidden border border-black/10"
                       style={{ background: m.bg }}
                     >
                       <MiniMotifThumb motif={m.id} color={m.color} />
                     </div>
                     <span className="text-sm font-medium text-foreground">{m.label}</span>
                     {config.motif === m.id && (
-                      <span className="ml-auto text-xs">✓</span>
+                      <span className="ml-auto text-xs"><Check className="w-4 h-4 text-gold" /></span>
                     )}
                   </button>
                 ))}
@@ -200,10 +203,13 @@ export default function VirtualDraping() {
 
             {/* Info card */}
             <div className="glass border border-gold/20 rounded-2xl p-4 bg-gold/5">
-              <h4 className="text-xs font-semibold text-gold mb-2">💡 Batik dalam Mode</h4>
+              <div className="flex items-center gap-2 mb-2">
+                <Sparkles className="w-4 h-4 text-gold" />
+                <h4 className="text-xs font-semibold text-gold uppercase tracking-wider">Batik & Mode Global</h4>
+              </div>
               <p className="text-xs text-muted leading-relaxed">
-                Desainer Indonesia seperti Didiet Maulana, Oscar Lawalata, dan Anne Avantie telah membawa 
-                batik ke panggung mode internasional — membuktikan bahwa warisan bisa selaras dengan modernitas.
+                Desainer kenamaan Indonesia telah mentransformasikan batik dari busana seremonial klasik 
+                menjadi siluet prêt-à-porter di panggung mode internasional.
               </p>
             </div>
           </div>

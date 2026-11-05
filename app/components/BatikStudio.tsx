@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
+import { Download, RotateCcw, Sliders, Palette, Grid } from "lucide-react";
 
 /* ─────────────────────────────────────────────
    Batik Pattern Canvas / Studio Generator
@@ -25,20 +26,20 @@ const DEFAULT_CONFIG: StudioConfig = {
   motif: "kawung",
   primaryColor: "#C9A84C",
   secondaryColor: "#B87333",
-  bgColor: "#0F0A06",
+  bgColor: "#1A0F07",
   scale: 1,
   rotation: 0,
   symmetry: "4x",
   opacity: 1,
 };
 
-const MOTIF_OPTIONS: { id: MotifType; label: string; icon: string }[] = [
-  { id: "kawung", label: "Kawung", icon: "⬡" },
-  { id: "parang", label: "Parang", icon: "〰" },
-  { id: "truntum", label: "Truntum", icon: "✿" },
-  { id: "mega-mendung", label: "Mega Mendung", icon: "☁" },
-  { id: "lereng", label: "Lereng", icon: "╱" },
-  { id: "sidomukti", label: "Sidomukti", icon: "⊞" },
+const MOTIF_OPTIONS: { id: MotifType; label: string }[] = [
+  { id: "kawung", label: "Kawung" },
+  { id: "parang", label: "Parang" },
+  { id: "truntum", label: "Truntum" },
+  { id: "mega-mendung", label: "Mega Mendung" },
+  { id: "lereng", label: "Lereng" },
+  { id: "sidomukti", label: "Sidomukti" },
 ];
 
 const SYMMETRY_OPTIONS: { id: SymmetryType; label: string }[] = [
@@ -180,14 +181,14 @@ export default function BatikStudio() {
                     key={m.id}
                     onClick={() => updateConfig({ motif: m.id })}
                     className={[
-                      "py-2.5 rounded-xl border text-xs font-medium transition-all duration-200",
+                      "py-2.5 px-2 rounded-xl border text-xs font-medium transition-all duration-200 text-center flex flex-col items-center justify-center gap-1",
                       config.motif === m.id
-                        ? "border-gold bg-gold/15 text-gold"
-                        : "border-border hover:border-gold/40 text-muted hover:text-foreground",
+                        ? "border-gold bg-gold/15 text-gold font-semibold shadow-xs"
+                        : "border-border hover:border-gold/40 text-muted hover:text-foreground bg-surface",
                     ].join(" ")}
                   >
-                    <div className="text-lg mb-0.5">{m.icon}</div>
-                    {m.label}
+                    <span className="w-1.5 h-1.5 rounded-full bg-current opacity-70" />
+                    <span>{m.label}</span>
                   </button>
                 ))}
               </div>
@@ -286,16 +287,18 @@ export default function BatikStudio() {
             <div className="flex gap-3">
               <button
                 onClick={() => setConfig(DEFAULT_CONFIG)}
-                className="flex-1 py-2.5 rounded-xl border border-border text-muted text-sm hover:border-gold/40 hover:text-foreground transition-all duration-200"
+                className="flex-1 py-2.5 rounded-xl border border-border text-muted text-sm hover:border-gold/40 hover:text-foreground transition-all duration-200 flex items-center justify-center gap-1.5"
               >
-                Reset
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>Reset</span>
               </button>
               <button
                 onClick={handleDownload}
                 disabled={downloading}
-                className="flex-1 py-2.5 rounded-xl bg-gold text-warm-black text-sm font-semibold hover:bg-gold-light transition-all duration-200 hover:scale-105 disabled:opacity-70"
+                className="flex-1 py-2.5 rounded-xl bg-gold text-warm-black text-sm font-semibold hover:bg-gold-light transition-all duration-200 hover:scale-[1.02] disabled:opacity-70 flex items-center justify-center gap-2"
               >
-                {downloading ? "Menyimpan..." : "⬇ Unduh PNG"}
+                <Download className="w-4 h-4" />
+                <span>{downloading ? "Memproses..." : "Unduh PNG"}</span>
               </button>
             </div>
           </div>

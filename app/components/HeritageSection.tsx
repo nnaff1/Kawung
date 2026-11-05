@@ -2,26 +2,35 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import {
+  BookOpen,
+  Globe,
+  PenTool,
+  Stamp,
+  Sparkles,
+  Compass,
+  MapPin,
+} from "lucide-react";
 
 const heritageCards = [
   {
     span: "col-span-12 md:col-span-7",
     type: "featured",
-    icon: "📜",
+    icon: BookOpen,
     label: "Sejarah",
     title: "Lebih dari 1.000 Tahun Peradaban",
     body:
-      "Batik telah hadir dalam peradaban Jawa sejak abad ke-9 Masehi, terukir dalam relief Candi Prambanan. Kata 'batik' berasal dari bahasa Jawa — 'amba' (menulis) dan 'titik' (titik). Pada 2 Oktober 2009, UNESCO mengakui batik sebagai Warisan Budaya Takbenda Kemanusiaan.",
+      "Batik telah hadir dalam peradaban Nusantara sejak abad ke-9 Masehi, terukir dalam relief Candi Prambanan. Kata 'batik' berakar dari bahasa Jawa — 'amba' (menulis) dan 'titik' (titik). Pada 2 Oktober 2009, UNESCO menetapkan batik Indonesia sebagai Warisan Kemanusiaan untuk Budaya Lisan dan Nonbendawi.",
     bg: "batik-kawung-bg",
     accent: true,
   },
   {
     span: "col-span-12 md:col-span-5",
     type: "stat",
-    icon: "🌍",
+    icon: Globe,
     label: "Pengakuan Dunia",
-    title: "UNESCO Intangible Heritage",
-    body: "Penetapan 2 Oktober sebagai Hari Batik Nasional merupakan bukti pengakuan internasional atas warisan agung ini.",
+    title: "UNESCO Intangible Cultural Heritage",
+    body: "Penetapan 2 Oktober sebagai Hari Batik Nasional menjadi tonggak abadi pengakuan internasional terhadap martabat dan kemurnian karya bangsa.",
     highlight: "2 Oktober",
     bg: "",
     accent: false,
@@ -29,60 +38,60 @@ const heritageCards = [
   {
     span: "col-span-12 md:col-span-4",
     type: "technique",
-    icon: "✍️",
+    icon: PenTool,
     label: "Teknik",
     title: "Batik Tulis",
     body:
-      "Dikerjakan tangan menggunakan canting — alat bermata tembaga kecil — untuk menorehkan malam (lilin) panas ke kain. Satu lembar bisa memerlukan berbulan-bulan pengerjaan.",
-    tag: "Paling Prestisius",
+      "Dikerjakan dengan canting tembaga presisi tinggi untuk menorehkan cairan malam panas secara manual. Setiap helai kain membutuhkan ketelatenan hingga berbulan-bulan.",
+    tag: "Prestisius",
     bg: "",
     accent: false,
   },
   {
     span: "col-span-12 md:col-span-4",
     type: "technique",
-    icon: "🔖",
+    icon: Stamp,
     label: "Teknik",
     title: "Batik Cap",
     body:
-      "Menggunakan cap (stempel) tembaga berukiran motif yang dicelupkan ke malam panas, lalu dicapkan ke kain. Lebih cepat dan seragam dibanding tulis.",
-    tag: "Paling Produktif",
+      "Menggunakan stempel plat tembaga dengan ukiran motif geometris yang dicelupkan ke malam panas. Menghasilkan konsistensi pola simetris yang rapi dan terukur.",
+    tag: "Konsistensi",
     bg: "",
     accent: false,
   },
   {
     span: "col-span-12 md:col-span-4",
     type: "technique",
-    icon: "🎨",
+    icon: Sparkles,
     label: "Teknik",
     title: "Batik Jumputan",
     body:
-      "Teknik ikat-celup (tie-dye) di mana kain diikat atau dijahit bagian tertentu sebelum dicelup warna, menciptakan pola alami yang unik.",
-    tag: "Paling Ekspresif",
+      "Teknik ikat celup di mana kain diikat benang kencang sebelum direndam ke dalam zat pewarna alami, membentuk gradasi organik yang ekspresif dan dinamis.",
+    tag: "Organik",
     bg: "",
     accent: false,
   },
   {
     span: "col-span-12 md:col-span-6",
     type: "philosophy",
-    icon: "🧘",
+    icon: Compass,
     label: "Filosofi",
-    title: "Makna di Setiap Titik",
+    title: "Bahasa Perlambang Kehidupan",
     body:
-      "Motif batik bukan sekadar hiasan — ia adalah bahasa simbolik. Kawung melambangkan kesucian jiwa; Parang merefleksikan kekuatan ksatria; Truntum mengisahkan cinta yang tumbuh kembali; Mega Mendung mewakili ketenangan jiwa.",
+      "Motif batik bukan sekadar dekorasi ornamental — ia adalah teks simbolik. Kawung melambangkan kesucian budi dan keadilan; Parang mengalirkan keteguhan ksatria; Truntum menyemai cinta abadi; Mega Mendung menuntun kejernihan jiwa.",
     bg: "batik-truntum-bg",
     accent: false,
   },
   {
     span: "col-span-12 md:col-span-6",
     type: "regions",
-    icon: "🗺️",
+    icon: MapPin,
     label: "Sentra Batik",
     regions: [
-      { name: "Yogyakarta", style: "Klasik Keraton, latar putih" },
-      { name: "Surakarta / Solo", style: "Klasik elegan, coklat sogan" },
-      { name: "Pekalongan", style: "Pesisir colorful, pengaruh China" },
-      { name: "Cirebon", style: "Mega Mendung & Wadasan" },
+      { name: "Yogyakarta", style: "Klasik keraton, dominasi warna putih & sogan" },
+      { name: "Surakarta / Solo", style: "Estetika anggun, karakter cokelat keemasan" },
+      { name: "Pekalongan", style: "Pesisir cerah, perpaduan multikultural" },
+      { name: "Cirebon", style: "Karakter maritim, Mega Mendung & Wadasan" },
     ],
     bg: "",
     accent: false,
@@ -111,7 +120,7 @@ export default function HeritageSection() {
             <span className="text-gradient-gold">Bercerita</span>
           </h2>
           <p className="mt-4 text-muted text-lg max-w-2xl">
-            Di setiap lembar batik tersimpan doa, filosofi, dan riwayat peradaban yang telah diwariskan lintas generasi.
+            Di setiap helai batik terukir doa, falsafah luhur, dan perjalanan peradaban Nusantara yang terus hidup melintasi zaman.
           </p>
         </motion.div>
       </div>
@@ -140,11 +149,12 @@ function BentoCard({ card }: { card: (typeof heritageCards)[0] }) {
   const isRegions = card.type === "regions";
   const isFeatured = card.type === "featured";
   const hasTag = "tag" in card && card.tag;
+  const IconComponent = card.icon;
 
   return (
     <div
       className={[
-        "relative h-full min-h-[180px] rounded-2xl p-6 overflow-hidden border border-border hover-card cursor-default",
+        "relative h-full min-h-[190px] rounded-2xl p-6 overflow-hidden border border-border hover-card cursor-default flex flex-col justify-between",
         isFeatured
           ? "bg-gradient-to-br from-gold/10 to-copper/5 border-gold/40"
           : "glass",
@@ -158,18 +168,20 @@ function BentoCard({ card }: { card: (typeof heritageCards)[0] }) {
 
       {/* Featured corner accent */}
       {isFeatured && (
-        <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-gold/20 to-transparent rounded-bl-3xl" />
+        <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-gold/20 to-transparent rounded-bl-3xl" />
       )}
 
       <div className="relative z-10">
-        {/* Label */}
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-xl">{card.icon}</span>
+        {/* Label & Icon Header */}
+        <div className="flex items-center gap-2 mb-4">
+          <div className="w-8 h-8 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center text-gold">
+            <IconComponent className="w-4 h-4" />
+          </div>
           <span className="text-xs font-semibold text-gold uppercase tracking-wider">
             {card.label}
           </span>
           {hasTag && (
-            <span className="ml-auto px-2 py-0.5 rounded-full bg-gold/15 text-gold text-[10px] font-semibold">
+            <span className="ml-auto px-2.5 py-0.5 rounded-full bg-gold/15 text-gold text-[10px] font-semibold tracking-wide">
               {(card as { tag: string }).tag}
             </span>
           )}
@@ -184,7 +196,7 @@ function BentoCard({ card }: { card: (typeof heritageCards)[0] }) {
               {(card as { regions: { name: string; style: string }[] }).regions.map((r) => (
                 <div
                   key={r.name}
-                  className="rounded-xl bg-gold/8 border border-gold/15 p-3 hover:border-gold/40 transition-colors"
+                  className="rounded-xl bg-gold/5 border border-gold/15 p-3 hover:border-gold/40 transition-colors"
                 >
                   <div className="text-sm font-semibold text-foreground">{r.name}</div>
                   <div className="text-xs text-muted mt-0.5">{r.style}</div>
@@ -195,7 +207,7 @@ function BentoCard({ card }: { card: (typeof heritageCards)[0] }) {
         ) : (
           <>
             {"highlight" in card && card.highlight && (
-              <div className="font-display text-5xl font-bold text-gold mb-2">
+              <div className="font-display text-4xl md:text-5xl font-bold text-gold mb-2 tracking-tight">
                 {card.highlight}
               </div>
             )}

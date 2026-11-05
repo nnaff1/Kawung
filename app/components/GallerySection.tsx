@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Sparkles, Landmark, Info, ArrowRight, X } from "lucide-react";
 
 /* ─────────────────────────────────────────────
    Gallery Showcase + Modal
@@ -238,7 +239,7 @@ export default function GallerySection() {
                   className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors"
                   aria-label="Close"
                 >
-                  ✕
+                  <X className="w-4 h-4" />
                 </button>
               </div>
 
@@ -259,11 +260,14 @@ export default function GallerySection() {
                 </div>
 
                 <div className="space-y-4">
-                  <ModalSection icon="🧘" title="Filosofi" text={modalItem.philosophy} />
-                  <ModalSection icon="🏛️" title="Makna Budaya" text={modalItem.significance} />
-                  <div className="rounded-xl bg-amber-500/8 border border-amber-500/20 p-4">
-                    <div className="text-xs font-semibold text-amber-500 mb-1">💡 Tahukah Kamu?</div>
-                    <p className="text-sm text-muted">{modalItem.funFact}</p>
+                  <ModalSection icon={Sparkles} title="Filosofi & Nilai Filosofis" text={modalItem.philosophy} />
+                  <ModalSection icon={Landmark} title="Makna & Peran Budaya" text={modalItem.significance} />
+                  <div className="rounded-xl bg-gold/10 border border-gold/25 p-4">
+                    <div className="text-xs font-semibold text-gold mb-1 flex items-center gap-1.5 uppercase tracking-wider">
+                      <Info className="w-3.5 h-3.5" />
+                      <span>Catatan Sejarah</span>
+                    </div>
+                    <p className="text-sm text-foreground/80 leading-relaxed">{modalItem.funFact}</p>
                   </div>
                 </div>
               </div>
@@ -310,13 +314,22 @@ function GalleryCard({ item, onClick }: { item: GalleryItem; onClick: () => void
   );
 }
 
-function ModalSection({ icon, title, text }: { icon: string; title: string; text: string }) {
+function ModalSection({
+  icon: Icon,
+  title,
+  text,
+}: {
+  icon: React.ElementType;
+  title: string;
+  text: string;
+}) {
   return (
     <div>
-      <h4 className="text-xs font-semibold text-gold uppercase tracking-wider mb-1.5">
-        {icon} {title}
+      <h4 className="text-xs font-semibold text-gold uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+        <Icon className="w-3.5 h-3.5" />
+        <span>{title}</span>
       </h4>
-      <p className="text-sm text-muted leading-relaxed">{text}</p>
+      <p className="text-sm text-foreground/80 leading-relaxed">{text}</p>
     </div>
   );
 }
